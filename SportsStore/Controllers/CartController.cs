@@ -26,13 +26,13 @@ namespace SportsStore.Controllers
             });
         }
 
-        public RedirectToActionResult AddToCart(int productID, string returnUrl)
+        public RedirectToActionResult AddToCart(int productID, string returnUrl, int quantity = 1)
         {
             Product product = repository.Products
                 .FirstOrDefault(p => p.ProductID == productID);
 
             if (product != null)
-                cart.AddItem(product, 1);
+                cart.AddItem(product, quantity);
             
             return RedirectToAction("Index", new { returnUrl });
         }
