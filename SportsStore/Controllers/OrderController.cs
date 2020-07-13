@@ -19,7 +19,7 @@ namespace SportsStore.Controllers
             cart = cartService;
         }
 
-        public ViewResult List() 
+        public ViewResult OrderList() 
             => View(repository.Orders.Where(o => !o.Shipped));
 
         [HttpPost]
@@ -32,7 +32,7 @@ namespace SportsStore.Controllers
                 order.Shipped = true;
                 repository.SaveOrder(order);
             }
-            return RedirectToAction(nameof(List));
+            return RedirectToAction(nameof(OrderList));
         }
         
         public ViewResult Checkout() => View(new Order());
